@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExternalMemory - Votre mémoire portative</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1d1d1f;
+            --secondary: #86868b;
+            --accent: #0071e3;
+            --bg-light: #f5f5f7;
+            --white: #ffffff;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--primary);
+            line-height: 1.5;
+            background: var(--white);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            z-index: 1000;
+            padding: 16px 0;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 400;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(180deg, var(--bg-light) 0%, var(--white) 100%);
+            padding-top: 80px;
+        }
+
+        .hero .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            color: var(--secondary);
+            margin-bottom: 40px;
+            max-width: 480px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--white);
+            padding: 16px 32px;
+            border-radius: 980px;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            background: #0077ed;
+            transform: scale(1.02);
+        }
+
+        .placeholder-image {
+            background: linear-gradient(135deg, #e8e8ed 0%, #d2d2d7 100%);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary);
+            font-size: 0.875rem;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hero-image {
+            width: 100%;
+            aspect-ratio: 4/3;
+        }
+
+        .tagline {
+            text-align: center;
+            background: var(--bg-light);
+        }
+
+        .tagline h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .tagline p {
+            font-size: 1.25rem;
+            color: var(--secondary);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .features {
+            text-align: center;
+        }
+
+        .features h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 60px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .feature-card {
+            padding: 40px;
+            background: var(--bg-light);
+            border-radius: 20px;
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--accent);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 1.5rem;
+            color: var(--white);
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            color: var(--secondary);
+            font-size: 0.95rem;
+        }
+
+        .scenarios {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .scenarios h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .scenario-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        .scenario-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .scenario-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #2997ff;
+        }
+
+        .scenario-card p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 16px;
+            font-size: 0.95rem;
+        }
+
+        .scenario-example {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 16px;
+            font-size: 0.9rem;
+        }
+
+        .scenario-example .command {
+            color: #2997ff;
+            font-weight: 500;
+        }
+
+        .scenario-example .response {
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 8px;
+        }
+
+        .product-design {
+            text-align: center;
+        }
+
+        .product-design h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .product-design > .container > p {
+            color: var(--secondary);
+            font-size: 1.1rem;
+            margin-bottom: 60px;
+        }
+
+        .design-image {
+            width: 100%;
+            max-width: 800px;
+            aspect-ratio: 16/9;
+            margin: 0 auto;
+        }
+
+        .specs {
+            background: var(--bg-light);
+        }
+
+        .specs h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+        }
+
+        .spec-item {
+            text-align: center;
+        }
+
+        .spec-item .icon {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+        }
+
+        .spec-item h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .spec-item p {
+            color: var(--secondary);
+            font-size: 0.875rem;
+        }
+
+        .cta-section {
+            text-align: center;
+            background: linear-gradient(180deg, var(--white) 0%, var(--bg-light) 100%);
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .cta-section p {
+            color: var(--secondary);
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+        }
+
+        footer {
+            background: var(--bg-light);
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        footer p {
+            color: var(--secondary);
+            font-size: 0.875rem;
+        }
+
+        @media (max-width: 968px) {
+            .hero .container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content p {
+                margin: 0 auto 40px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .scenario-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .specs-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="#" class="logo">ExternalMemory</a>
+            <ul class="nav-links">
+                <li><a href="#features">Fonctionnalités</a></li>
+                <li><a href="#scenarios">Cas d'usage</a></li>
+                <li><a href="#design">Design</a></li>
+                <li><a href="#specs">Spécifications</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Votre mémoire portative. Infaillible.</h1>
+                <p>ExternalMemory est un compagnon intelligent pour les personnes souffrant de troubles de la mémoire. Enregistrez, retrouvez et mettez à jour vos souvenirs simplement avec votre voix.</p>
+                <a href="#scenarios" class="cta-button">Découvrir</a>
+            </div>
+            <img src="hero-person.png" alt="Personne âgée utilisant ExternalMemory" class="hero-image" style="border-radius: 24px; width: 100%; height: auto;">
+        </div>
+    </section>
+
+    <section class="tagline">
+        <div class="container">
+            <h2>Un bouton. Deux actions.</h2>
+            <p>Appuyez pour enregistrer un souvenir. Appuyez pour le retrouver. Simple comme une conversation.</p>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="container">
+            <h2>Pourquoi ExternalMemory ?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">1</div>
+                    <h3>Simplicité absolue</h3>
+                    <p>Un seul bouton pour interagir avec l'appareil. Pas d'écran, pas de menu, pas de complication. Juste votre voix.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">2</div>
+                    <h3>Ajout à distance</h3>
+                    <p>Les aidants peuvent ajouter des souvenirs via une interface web. "L'infirmière passe jeudi matin" – enregistré instantanément.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">3</div>
+                    <h3>Mémoire intelligente</h3>
+                    <p>L'IA gère automatiquement les conflits et met à jour les souvenirs existants. Pas de doublons, pas de confusion.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="scenarios" id="scenarios">
+        <div class="container">
+            <h2>Cas d'usage</h2>
+            <div class="scenario-grid">
+                <div class="scenario-card">
+                    <h3>Limitier la perte de repères</h3>
+                    <p>Les changements d'environnement peuvent être déstabilisants. ExternalMemory aide à ancrer les informations importantes.</p>
+                    <div class="scenario-example">
+                        <div class="command">"Où suis-je ?"</div>
+                        <div class="response">→ "Tu habites à la maison de retraite depuis le 10 janvier."</div>
+                    </div>
+                </div>
+
+                <div class="scenario-card">
+                    <h3>Enregistrer les événements familiaux</h3>
+                    <p>Les proches peuvent ajouter des informations à distance pour maintenir le lien et éviter les répétitions.</p>
+                    <div class="scenario-example">
+                        <div class="command">"Quand viennent les enfants ?"</div>
+                        <div class="response">→ "Tes petits-enfants reviennent la semaine prochaine, ils sont en vacances aux USA."</div>
+                    </div>
+                </div>
+
+                <div class="scenario-card">
+                    <h3>Faire perdurer les instructions</h3>
+                    <p>Les procédures du quotidien deviennent accessibles à tout moment. Plus besoin de les mémoriser.</p>
+                    <div class="scenario-example">
+                        <div class="command">"Comment allumer la télé ?"</div>
+                        <div class="response">→ "La télécommande est sur le meuble près de la porte. Appuie sur le bouton rouge en haut à droite."</div>
+                    </div>
+                </div>
+
+                <div class="scenario-card">
+                    <h3>Accompagner les moments difficiles</h3>
+                    <p>L'enregistrement d'événements importants aide à intégrer les changements majeurs de la vie.</p>
+                    <div class="scenario-example">
+                        <div class="command">"Où sont les clés de la maison ?"</div>
+                        <div class="response">→ "Les clés de la maison sont dans le tiroir de la chambre à coucher."</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="product-design" id="design">
+        <div class="container">
+            <h2>Design et technologie</h2>
+            <p>Un appareil pensé pour la simplicité, conçu pour durer.</p>
+            <img src="exploded-view.png" alt="Vue explosée de l'appareil ExternalMemory" style="border-radius: 24px; width: 100%; max-width: 800px; height: auto;">
+        </div>
+    </section>
+
+    <section class="specs" id="specs">
+        <div class="container">
+            <h2>Spécifications</h2>
+            <div class="specs-grid">
+                <div class="spec-item">
+                    <div class="icon">🎤</div>
+                    <h4>Microphone</h4>
+                    <p>Capture vocale haute qualité</p>
+                </div>
+                <div class="spec-item">
+                    <div class="icon">🔊</div>
+                    <h4>Haut-parleur</h4>
+                    <p>Restitution claire des réponses</p>
+                </div>
+                <div class="spec-item">
+                    <div class="icon">🔋</div>
+                    <h4>Batterie</h4>
+                    <p>Rechargeable, autonomie journée</p>
+                </div>
+                <div class="spec-item">
+                    <div class="icon">📶</div>
+                    <h4>Connectivité</h4>
+                    <p>Wi-Fi pour la synchronisation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Soulagez les aidants. Libérez les esprits.</h2>
+            <p>ExternalMemory redonne autonomie aux personnes souffrant de troubles de la mémoire et répit à leurs proches.</p>
+            <a href="#" class="cta-button">Nous contacter</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 ExternalMemory. Tous droits réservés.</p>
+        </div>
+    </footer>
+</body>
+</html>
