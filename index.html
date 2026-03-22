@@ -344,10 +344,65 @@
             margin-bottom: 16px;
         }
 
-        .cta-section p {
+        .cta-section > .container > p {
             color: var(--secondary);
             font-size: 1.1rem;
             margin-bottom: 40px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-form input[type="email"] {
+            flex: 1;
+            padding: 16px 24px;
+            border: 1px solid #d2d2d7;
+            border-radius: 980px;
+            font-size: 1rem;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .newsletter-form input[type="email"]:focus {
+            border-color: var(--accent);
+        }
+
+        .newsletter-form input[type="email"]::placeholder {
+            color: var(--secondary);
+        }
+
+        .newsletter-form button {
+            background: var(--accent);
+            color: var(--white);
+            padding: 16px 32px;
+            border: none;
+            border-radius: 980px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        .newsletter-form button:hover {
+            background: #0077ed;
+            transform: scale(1.02);
+        }
+
+        @media (max-width: 600px) {
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-form button {
+                width: 100%;
+            }
         }
 
         footer {
@@ -462,11 +517,11 @@
                 </div>
 
                 <div class="scenario-card">
-                    <h3>Enregistrer les événements familiaux</h3>
-                    <p>Les proches peuvent ajouter des informations à distance pour maintenir le lien et éviter les répétitions.</p>
+                    <h3>Enregistrer les événements familiaux pontuels</h3>
+                    <p>Casser une habitude peut générer du stress quand on a oublié pourquoi.</p>
                     <div class="scenario-example">
-                        <div class="command">"Quand viennent les enfants ?"</div>
-                        <div class="response">→ "Tes petits-enfants reviennent la semaine prochaine, ils sont en vacances aux USA."</div>
+                        <div class="command">"Quand vient ma fille ?"</div>
+                        <div class="response">→ "Votre fille revient la semaine prochaine, ils sont en vacances à l'étranger."</div>
                     </div>
                 </div>
 
@@ -481,10 +536,10 @@
 
                 <div class="scenario-card">
                     <h3>Accompagner les moments difficiles</h3>
-                    <p>L\'enregistrement d\'événements importants aide à intégrer les changements majeurs de la vie.</p>
+                    <p>L'enregistrement d'événements importants aide à intégrer les changements majeurs de la vie.</p>
                     <div class="scenario-example">
-                        <div class="command">"Michel est toujours là ?"</div>
-                        <div class="response">→ "Michel est décédé jeudi 14 février."</div>
+                        <div class="command">"Raymond est toujours là ?"</div>
+                        <div class="response">→ "Malheureusement Raymond nous a quitté jeudi 14 février."</div>
                     </div>
                 </div>
                 </div>
@@ -517,7 +572,7 @@
                 <div class="spec-item">
                     <div class="icon">🔋</div>
                     <h4>Batterie</h4>
-                    <p>Rechargeable, autonomie journée</p>
+                    <p>Rechargeable, longue autonomie</p>
                 </div>
                 <div class="spec-item">
                     <div class="icon">📶</div>
@@ -530,9 +585,16 @@
 
     <section class="cta-section">
         <div class="container">
-            <h2>Soulagez les aidants. Libérez les esprits.</h2>
-            <p>ExternalMemory redonne autonomie aux personnes souffrant de troubles de la mémoire et répit à leurs proches.</p>
-            <a href="#" class="cta-button">Nous contacter</a>
+            <h2>Intéressé ?</h2>
+            <p>Laissez-nous votre email pour être notifié de la sortie du produit.</p>
+            <form action="https://api.staticforms.dev/submit" method="POST" class="newsletter-form">
+                <input type="text" name="honeypot" style="display:none">
+                <input type="hidden" name="apiKey" value="sf_bc47bfe53e2b51f19c6b5a66">
+                <input type="hidden" name="subject" value="Nouvelle inscription ExternalMemory">
+                <input type="hidden" name="redirectTo" value="thank-you.html">
+                <input type="email" name="email" placeholder="votre@email.com" required>
+                <button type="submit">M'inscrire</button>
+            </form>
         </div>
     </section>
 
