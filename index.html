@@ -301,6 +301,40 @@
             height: auto;
         }
 
+        .benefits-section {
+            background: var(--white);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+        }
+
+        .benefit-card {
+            text-align: center;
+        }
+
+        .benefit-card img {
+            width: 100%;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+            border-radius: 24px;
+            margin-bottom: 32px;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .benefit-card p {
+            color: var(--secondary);
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
         @media (max-width: 968px) {
             .safety-grid {
                 grid-template-columns: 1fr;
@@ -308,6 +342,11 @@
 
             .safety-content {
                 text-align: center;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+                gap: 60px;
             }
         }
 
@@ -566,6 +605,23 @@
                     <div class="feature-icon">3</div>
                     <h3>Mémoire intelligente</h3>
                     <p>L'IA gère automatiquement les conflits et met à jour les souvenirs existants. Pas de doublons, pas de confusion.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="benefits-section">
+        <div class="container">
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <img src="benefit-crisis.png" alt="Aténuer les crises d'angoisse">
+                    <h3>Aténuer les crises d'angoisse</h3>
+                    <p>Les troubles de la mémoire peuvent générer de l'anxiété. Méalta apporte des réponses immédiates et rassurantes, réduisant le stress et les questionnements incessants.<br>C'est un talkie-walkie de la mémoire qui peut répondre à toute heure de la journée et de la nuit.</p>
+                </div>
+                <div class="benefit-card">
+                    <img src="benefit-caregivers.png" alt="Décharger les aidants">
+                    <h3>Décharger les aidants</h3>
+                    <p>Plus besoin de répéter constamment les mêmes informations. Méalta libère les proches de la charge mentale, en répondant patiemment à chaque question. Faites une pause, Méalta est là pour vous aider.</p>
                 </div>
             </div>
         </div>
